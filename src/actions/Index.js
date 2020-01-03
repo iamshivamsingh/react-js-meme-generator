@@ -1,14 +1,16 @@
 export const RECEIVE_MEME = 'RECEIVE_MEME';
 
-export const receiveMeme = () => (dispatch) => {
+export const fetchMemes = () => (dispatch) => {
     fetch('https://api.imgflip.com/get_memes')
-        .then(res => {
+        .then(res => res.json())
+        .then(data => {
             dispatch({
                 type: RECEIVE_MEME,
-                payload: res.json()
+                payload: data.data
             })
         })
         .catch(err => {
             console.log(err)
         })
 }
+
