@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers'
 import { Provider } from 'react-redux'
-
-import { fetchMemes } from './actions';
-
+import './index.css'
 import App from './components/App';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-store.subscribe(() => console.log('store',store.getState()));
-store.dispatch(fetchMemes());
+const initialState = {};
+const middleware = [thunk];
+const store = createStore(
+    rootReducer, 
+    initialState, 
+    compose(
+        applyMiddleware(...middleware),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    )
+);
 
 ReactDOM.render(
     <Provider store={store}>
