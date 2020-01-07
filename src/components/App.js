@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchMemes } from '../actions';
+import { fetchMemes } from '../Actions';
 import MemeItem from './MemeItem';
 import MyMemes from './MyMemes'
 import { Input, Dimmer, Loader, Image, Segment  } from 'semantic-ui-react'
